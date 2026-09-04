@@ -19,9 +19,11 @@ return Application::configure(basePath: dirname(__DIR__))
             'is_admin' => \App\Http\Middleware\IsAdmin::class,
         ]);
 
-        // Kecualikan logout dan webhook Midtrans dari CSRF
+        // Kecualikan logout, webhook Midtrans, dan AI Chat dari CSRF
         $middleware->validateCsrfTokens(except: [
             'logout',
+            'ai-chat',
+            'api/ai-chat',
             'midtrans/notification',
             'api/midtrans/notification',
             'midtrans/webhook',
