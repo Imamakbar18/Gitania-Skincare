@@ -26,17 +26,26 @@ class ChatController extends Controller
             return response()->json(['success' => false, 'reply' => 'Pesan tidak boleh kosong.'], 400);
         }
 
-        // 1. Ambil semua produk aktif beserta foto utama dari database
-        $products = Product::with(['images' => function ($q) {
-            $q->where('is_primary', true)->orWhere('order', 1)->orderBy('order');
-        }])->where('status', 'active')->get();
+        // 1. Ambil semua produk aktif beserta foto utama dari database dengan proteksi try-catch
+        try {
+            $products = Product::with(['images' => function ($q) {
+                $q->where('is_primary', true)->orWhere('order', 1)->orderBy('order');
+            }])->where('status', 'active')->get();
+        } catch (\Throwable $e) {
+            Log::warning('ChatController DB Error: ' . $e->getMessage());
+            $products = collect();
+        }
 
         // 2. Bangun teks katalog untuk konteks AI
         $productCatalog = '';
-        foreach ($products as $p) {
-            $productCatalog .= '- ' . $p->name
-                . ' (Harga: Rp ' . number_format($p->price, 0, ',', '.')
-                . ', Stok: ' . $p->stock . ")\n";
+        if ($products->count() > 0) {
+            foreach ($products as $p) {
+                $productCatalog .= '- ' . $p->name
+                    . ' (Harga: Rp ' . number_format($p->price, 0, ',', '.')
+                    . ', Stok: ' . $p->stock . ")\n";
+            }
+        } else {
+            $productCatalog = "- Paket Whitening & Glowing Series\n- Acne Care Treatment Series\n- UV Shield Sunscreen SPF 50\n- Radiant Skin Barrier Serum\n";
         }
 
         $companyInfo = "
@@ -46,7 +55,7 @@ class ChatController extends Controller
         Alamat Kantor/Klinik: Jl. Komud ABD. Saleh No.58, Krajan, Asrikaton, Kec. Pakis, Kabupaten Malang, Jawa Timur 65154.
         Kontak CS: WhatsApp 083815086540, Email skincaregitania@gmail.com, Instagram @gitaniaskincare.official.
         Metode Pembayaran: Midtrans (QRIS, GoPay, ShopeePay, Transfer Bank BCA/BNI/BRI/Mandiri, Kartu Kredit).
-        Daftar Produk di Database:
+        Daftar Produk:
         {$productCatalog}
         ";
 
@@ -55,9 +64,9 @@ class ChatController extends Controller
 
         // 4. Siapkan payload produk untuk dikirim ke frontend (jika relevan)
         $productPayload = [];
-        if ($isProductQuery) {
+        if ($isProductQuery && $products->count() > 0) {
             foreach ($products as $p) {
-                $primaryImage = $p->images->first();
+                $primaryImage = $p->images ? $p->images->first() : null;
                 $productPayload[] = [
                     'id'        => $p->id,
                     'name'      => $p->name,

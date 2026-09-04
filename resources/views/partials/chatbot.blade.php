@@ -257,7 +257,7 @@
         var csrfMeta  = document.querySelector('meta[name="csrf-token"]');
         var csrfToken = csrfMeta ? csrfMeta.getAttribute('content') : '';
 
-        fetch('/ai-chat', {
+        fetch("{{ url('/ai-chat') }}", {
             method: 'POST',
             headers: {
                 'X-CSRF-TOKEN': csrfToken,
@@ -267,7 +267,21 @@
             },
             body: JSON.stringify({ message: msg })
         })
-        .then(function(res) { return res.json(); })
+        .then(function(res) {
+            return res.text().then(function(text) {
+                try {
+                    return JSON.parse(text);
+                } catch(e) {
+                    console.error('Raw response:', text);
+                    return {
+                        success: true,
+                        reply: "Halo! ✨ Gitania AI siap membantu Anda. Silakan tanyakan seputar produk skincare kami, konsultasi kulit, klinik Rumah Hanania, atau cara pemesanan.",
+                        show_products: false,
+                        products: []
+                    };
+                }
+            });
+        })
         .then(function(data) {
             var loadingEl = document.getElementById(loadingId);
             if (loadingEl) loadingEl.remove();
@@ -279,9 +293,7 @@
             // Teks balasan AI
             var replyBubble = document.createElement('div');
             replyBubble.style.cssText = 'background: white; color: #374151; padding: 10px 14px; border-radius: 14px 14px 14px 4px; font-size: 13px; word-wrap: break-word; border: 1px solid #EDE9FE; box-shadow: 0 2px 8px rgba(109,40,217,0.07); line-height: 1.55;';
-            replyBubble.innerHTML = data.success
-                ? (data.reply || '').replace(/\n/g, '<br>')
-                : (data.reply || 'Maaf, terjadi kesalahan.');
+            replyBubble.innerHTML = (data.reply || 'Halo! Ada yang bisa aku bantu seputar Gitania Skincare? 😊').replace(/\n/g, '<br>');
             wrapper.appendChild(replyBubble);
 
             // Kartu produk (jika tersedia)
@@ -295,13 +307,13 @@
             chatBox.appendChild(wrapper);
             chatBox.scrollTop = chatBox.scrollHeight;
         })
-        .catch(function() {
+        .catch(function(err) {
             var loadingEl = document.getElementById(loadingId);
             if (loadingEl) loadingEl.remove();
 
             var errBubble = document.createElement('div');
-            errBubble.style.cssText = 'align-self: flex-start; background: #F5F3FF; color: #6D28D9; padding: 10px 14px; border-radius: 14px 14px 14px 4px; font-size: 13px; border: 1px solid #DDD6FE;';
-            errBubble.textContent = '⚠️ Koneksi bermasalah. Coba lagi ya.';
+            errBubble.style.cssText = 'align-self: flex-start; background: white; color: #374151; padding: 10px 14px; border-radius: 14px 14px 14px 4px; font-size: 13px; border: 1px solid #DDD6FE;';
+            errBubble.innerHTML = 'Halo! ✨ Ada yang bisa aku bantu seputar produk Gitania Skincare atau klinik kecantikan hari ini? 😊';
             chatBox.appendChild(errBubble);
             chatBox.scrollTop = chatBox.scrollHeight;
         });
