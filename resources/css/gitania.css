@@ -1,0 +1,55 @@
+:root {
+    --purple-deep: #4A2E7A;
+    --purple-hover: #38215c;
+    --lilac-soft: #EADCF8;
+    --lilac-light: #F4EFFF;
+    --bg-gray: #F9F8FC;
+    --text-dark: #2D2638;
+    --white: #FFFFFF;
+}
+
+body {
+    background-color: var(--bg-gray);
+    color: var(--text-dark);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Efek Kartu Produk Aesthetic */
+.product-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid var(--lilac-soft);
+    box-shadow: 0 4px 20px rgba(74, 46, 122, 0.03);
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(74, 46, 122, 0.08);
+    border-color: var(--purple-deep);
+}
+
+/* Tombol Interaktif */
+.btn-gitania {
+    background: var(--purple-deep);
+    color: var(--white);
+    padding: 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    text-align: center;
+    display: block;
+    transition: background 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-gitania:hover {
+    background: var(--purple-hover);
+}
