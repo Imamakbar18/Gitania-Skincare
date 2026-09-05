@@ -136,3 +136,16 @@ Route::middleware(['auth'])->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// Fallback asset loader untuk storage pada shared hosting (InfinityFree, cPanel)
+Route::get('/storage/{path}', function ($path) {
+    $file = public_path('storage/' . $path);
+    if (!file_exists($file)) {
+        $file = storage_path('app/public/' . $path);
+    }
+    if (file_exists($file)) {
+        $mime = mime_content_type($file) ?: 'image/jpeg';
+        return response()->file($file, ['Content-Type' => $mime]);
+    }
+    abort(404);
+})->where('path', '.*');
