@@ -4,6 +4,32 @@
      ============================================================ --}}
 
 @once
+@php
+    try {
+        $gtnDbProducts = \App\Models\Product::with(['images' => function($q) {
+            $q->where('is_primary', true)->orWhere('order', 1)->orderBy('order');
+        }])->where('status', 'active')->get()->map(function($p) {
+            $img = $p->images ? $p->images->first() : null;
+            $imgUrl = null;
+            if ($img) {
+                $imgUrl = str_starts_with($img->image_path, 'http') 
+                    ? $img->image_path 
+                    : asset('storage/' . $img->image_path);
+            }
+            return [
+                'id'        => $p->id,
+                'name'      => $p->name,
+                'price'     => number_format($p->price, 0, ',', '.'),
+                'stock'     => $p->stock,
+                'slug'      => $p->slug ?? $p->id,
+                'image_url' => $imgUrl,
+            ];
+        })->values();
+    } catch (\Throwable $e) {
+        $gtnDbProducts = collect();
+    }
+@endphp
+
 <!-- Chatbot Button -->
 <button
     id="gtn-chat-trigger"
@@ -78,7 +104,7 @@
     <!-- Chat Messages Area -->
     <div id="gtn-chat-box" style="flex: 1; padding: 16px; overflow-y: auto; background: #F5F3FF; display: flex; flex-direction: column; gap: 10px;">
         <div style="align-self: flex-start; background: white; padding: 10px 14px; border-radius: 14px 14px 14px 4px; font-size: 13px; color: #374151; max-width: 85%; box-shadow: 0 2px 8px rgba(109,40,217,0.08); border: 1px solid #EDE9FE;">
-            Halo! 👋 Ada yang bisa aku bantu seputar produk Gitania Skincare?
+            Halo! 👋 Ada yang bisa aku bantu seputar produk Gitania Skincare, konsultasi kulit, atau klinik kecantikan?
         </div>
     </div>
 
@@ -87,7 +113,7 @@
         <input
             type="text"
             id="gtn-chat-input"
-            placeholder="Tulis pesan..."
+            placeholder="Tulis pertanyaan Anda..."
             style="flex: 1; padding: 10px 14px; border: 1.5px solid #DDD6FE; border-radius: 10px; outline: none; font-size: 13px; font-family: 'Poppins', sans-serif; color: #374151; transition: border-color 0.2s;"
             onfocus="this.style.borderColor='#8B5CF6'"
             onblur="this.style.borderColor='#DDD6FE'"
@@ -186,8 +212,9 @@
 
 <script>
 (function() {
-    // ===== STATE =====
+    // ===== STATE & DATA =====
     var chatOpen = false;
+    var GTN_LOCAL_PRODUCTS = @json($gtnDbProducts);
 
     // ===== TOGGLE CHAT =====
     window.gtnToggleChat = function() {
@@ -211,7 +238,7 @@
                 ? '<img src="' + p.image_url + '" alt="' + p.name + '" loading="lazy">'
                 : '<div class="gtn-no-img">🧴</div>';
 
-            var productUrl = '/products/' + p.slug;
+            var productUrl = '{{ url("/products") }}/' + (p.slug || p.id);
 
             html += '<a class="gtn-product-card" href="' + productUrl + '">'
                 + imgHtml
@@ -225,6 +252,92 @@
         });
         html += '</div>';
         return html;
+    }
+
+    // ===== CLIENT INTELLIGENT FALLBACK ENGINE =====
+    function getSmartClientReply(userMsg, products) {
+        var msg = (userMsg || '').toLowerCase();
+        var prods = Array.isArray(products) && products.length > 0 ? products : GTN_LOCAL_PRODUCTS;
+
+        // 1. Produk / Katalog / Harga / Jual / Beli / List / Rekomendasi
+        if (/(produk|product|katalog|catalog|jual|beli|harga|price|skincare|serum|cream|krim|toner|cleanser|ada apa|apa saja|apa aja|list|daftar|rekomendasi|item|barang|stok|stock)/i.test(msg)) {
+            var totalCount = prods.length;
+            return {
+                reply: "Berikut adalah katalog produk unggulan Gitania Skincare yang tersedia di website kami (" + totalCount + " varian produk). Silakan klik pada produk untuk melihat rincian detail dan memesan! 🛍️✨",
+                show_products: true,
+                products: prods
+            };
+        }
+
+        // 2. Jerawat / Acne / Bruntusan / Kulit Berminyak
+        if (/(jerawat|bruntus|acne|minyak|komedo|radang|beruntusan)/i.test(msg)) {
+            return {
+                reply: "Untuk masalah kulit berjerawat dan bruntusan, Gitania Skincare merekomendasikan pembersih wajah lembut dan serum berbahan aktif calming (Niacinamide & Centella Asiatica) yang membersihkan pori secara mendalam tanpa mengeringkan kulit. Kamu juga dapat berkonsultasi langsung dengan dokter spesialis kami di Klinik Pratama Rumah Hanania! 🌸",
+                show_products: true,
+                products: prods
+            };
+        }
+
+        // 3. Mencerahkan / Kusam / Glowing / Flek
+        if (/(kusam|cerah|mencerahkan|glowing|flek|noda|putih|glow|bekas)/i.test(msg)) {
+            return {
+                reply: "Untuk mengatasi kulit kusam dan menyamarkan noda hitam bekas jerawat, rangkaian Gitania Radiant Glow Series & UV Shield Sunscreen sangat efektif mengembalikan kelembapan serta membuat kulit tampak lebih cerah dan glowing alami! ✨",
+                show_products: true,
+                products: prods
+            };
+        }
+
+        // 4. Sunscreen / Tabir Surya
+        if (/(sunscreen|tabir surya|spf|panas|matahari|uv)/i.test(msg)) {
+            return {
+                reply: "Sunscreen Gitania Skincare diformulasikan dengan perlindungan UV spektrum luas yang ringan, mudah meresap, dan tidak menimbulkan whitecast. Wajib dipakai setiap pagi sebelum beraktivitas! ☀️",
+                show_products: true,
+                products: prods
+            };
+        }
+
+        // 5. Klinik / Alamat / Lokasi
+        if (/(klinik|lokasi|alamat|cabang|malang|tempat|offline|toko|rumah hanania)/i.test(msg)) {
+            return {
+                reply: "Klinik resmi kami berlokasi di **Klinik Pratama Rumah Hanania**, Jl. Komud ABD. Saleh No.58, Krajan, Asrikaton, Kec. Pakis, Kabupaten Malang, Jawa Timur. Kami melayani konsultasi dokter, IPL, facial, meso, dan perawatan estetika medis lainnya. 🏥",
+                show_products: false,
+                products: []
+            };
+        }
+
+        // 6. Pembayaran / Pengiriman / Cara Pesan
+        if (/(bayar|pembayaran|qris|transfer|ongkir|kirim|pesan|order|beli|midtrans)/i.test(msg)) {
+            return {
+                reply: "Pemesanan produk sangat mudah! Cukup masukkan produk ke keranjang belanja, isi alamat pengiriman, dan bayar aman secara instan via **Midtrans** (QRIS, GoPay, ShopeePay, Transfer Bank BCA/BNI/BRI/Mandiri, atau Kartu Kredit). 💳📦",
+                show_products: false,
+                products: []
+            };
+        }
+
+        // 7. Kontak CS / WhatsApp
+        if (/(cs|admin|wa|whatsapp|hubungi|kontak|nomor|telepon)/i.test(msg)) {
+            return {
+                reply: "Kamu bisa menghubungi Admin CS Gitania via WhatsApp di nomor **0838-1508-6540** atau Instagram **@gitaniaskincare.official**. Kami siap membantu dengan senang hati! 💬",
+                show_products: false,
+                products: []
+            };
+        }
+
+        // 8. Salam / Greeting
+        if (/(halo|hai|hi|hello|pagi|siang|sore|malam|assalam|permisi|aaa|tes|test)/i.test(msg)) {
+            return {
+                reply: "Halo! ✨ Selamat datang di Gitania Skincare. Ada yang bisa aku bantu untuk rekomendasi produk, konsultasi jenis kulit, info klinik kecantikan, atau pemesanan hari ini? 😊",
+                show_products: false,
+                products: []
+            };
+        }
+
+        // Default
+        return {
+            reply: "Terima kasih sudah menghubungi Gitania Skincare! ✨ Aku siap membantu memberikan rekomendasi produk perawatan kulit, informasi klinik kecantikan Rumah Hanania, cara pemesanan, atau info kontak CS. Mau tanya tentang apa hari ini?",
+            show_products: false,
+            products: []
+        };
     }
 
     // ===== SEND MESSAGE =====
@@ -253,7 +366,31 @@
         chatBox.appendChild(loadingBubble);
         chatBox.scrollTop = chatBox.scrollHeight;
 
-        // Kirim ke API
+        // Fungsi render balasan
+        function renderAiResponse(data) {
+            var loadingEl = document.getElementById(loadingId);
+            if (loadingEl) loadingEl.remove();
+
+            var wrapper = document.createElement('div');
+            wrapper.style.cssText = 'align-self: flex-start; display: flex; flex-direction: column; gap: 8px; max-width: 92%; width: 100%;';
+
+            var replyBubble = document.createElement('div');
+            replyBubble.style.cssText = 'background: white; color: #374151; padding: 10px 14px; border-radius: 14px 14px 14px 4px; font-size: 13px; word-wrap: break-word; border: 1px solid #EDE9FE; box-shadow: 0 2px 8px rgba(109,40,217,0.07); line-height: 1.55;';
+            replyBubble.innerHTML = (data.reply || '').replace(/\n/g, '<br>');
+            wrapper.appendChild(replyBubble);
+
+            if (data.show_products && data.products && data.products.length > 0) {
+                var cardsHtml = buildProductCards(data.products);
+                var cardsEl   = document.createElement('div');
+                cardsEl.innerHTML = cardsHtml;
+                wrapper.appendChild(cardsEl.firstChild);
+            }
+
+            chatBox.appendChild(wrapper);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Kirim ke backend Laravel
         var csrfMeta  = document.querySelector('meta[name="csrf-token"]');
         var csrfToken = csrfMeta ? csrfMeta.getAttribute('content') : '';
 
@@ -270,52 +407,22 @@
         .then(function(res) {
             return res.text().then(function(text) {
                 try {
-                    return JSON.parse(text);
+                    var parsed = JSON.parse(text);
+                    if (parsed && parsed.success && parsed.reply) {
+                        return parsed;
+                    }
                 } catch(e) {
-                    console.error('Raw response:', text);
-                    return {
-                        success: true,
-                        reply: "Halo! ✨ Gitania AI siap membantu Anda. Silakan tanyakan seputar produk skincare kami, konsultasi kulit, klinik Rumah Hanania, atau cara pemesanan.",
-                        show_products: false,
-                        products: []
-                    };
+                    // Fallback to client engine jika response non-JSON (misal firewall InfinityFree)
                 }
+                return getSmartClientReply(msg, GTN_LOCAL_PRODUCTS);
             });
         })
-        .then(function(data) {
-            var loadingEl = document.getElementById(loadingId);
-            if (loadingEl) loadingEl.remove();
-
-            // Wrapper untuk balasan bot
-            var wrapper = document.createElement('div');
-            wrapper.style.cssText = 'align-self: flex-start; display: flex; flex-direction: column; gap: 8px; max-width: 92%; width: 100%;';
-
-            // Teks balasan AI
-            var replyBubble = document.createElement('div');
-            replyBubble.style.cssText = 'background: white; color: #374151; padding: 10px 14px; border-radius: 14px 14px 14px 4px; font-size: 13px; word-wrap: break-word; border: 1px solid #EDE9FE; box-shadow: 0 2px 8px rgba(109,40,217,0.07); line-height: 1.55;';
-            replyBubble.innerHTML = (data.reply || 'Halo! Ada yang bisa aku bantu seputar Gitania Skincare? 😊').replace(/\n/g, '<br>');
-            wrapper.appendChild(replyBubble);
-
-            // Kartu produk (jika tersedia)
-            if (data.show_products && data.products && data.products.length > 0) {
-                var cardsHtml = buildProductCards(data.products);
-                var cardsEl   = document.createElement('div');
-                cardsEl.innerHTML = cardsHtml;
-                wrapper.appendChild(cardsEl.firstChild);
-            }
-
-            chatBox.appendChild(wrapper);
-            chatBox.scrollTop = chatBox.scrollHeight;
+        .then(function(finalData) {
+            renderAiResponse(finalData);
         })
         .catch(function(err) {
-            var loadingEl = document.getElementById(loadingId);
-            if (loadingEl) loadingEl.remove();
-
-            var errBubble = document.createElement('div');
-            errBubble.style.cssText = 'align-self: flex-start; background: white; color: #374151; padding: 10px 14px; border-radius: 14px 14px 14px 4px; font-size: 13px; border: 1px solid #DDD6FE;';
-            errBubble.innerHTML = 'Halo! ✨ Ada yang bisa aku bantu seputar produk Gitania Skincare atau klinik kecantikan hari ini? 😊';
-            chatBox.appendChild(errBubble);
-            chatBox.scrollTop = chatBox.scrollHeight;
+            var fallbackData = getSmartClientReply(msg, GTN_LOCAL_PRODUCTS);
+            renderAiResponse(fallbackData);
         });
     }
 
