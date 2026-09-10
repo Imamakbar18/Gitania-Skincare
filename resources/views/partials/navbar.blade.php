@@ -6,14 +6,15 @@
 <style>
     /* ===== NAVBAR BASE ===== */
     .gtn-navbar {
-        background: #ffffff;
-        border-bottom: 1px solid #ede9fe;
-        box-shadow: 0 1px 12px rgba(107, 33, 168, 0.07);
+        background: transparent;
+        border-bottom: none;
+        box-shadow: none;
         position: sticky;
         top: 0;
         z-index: 1000;
         width: 100%;
         box-sizing: border-box;
+        transition: background 0.3s ease, box-shadow 0.3s ease;
     }
     .gtn-navbar-inner {
         max-width: 1280px;
@@ -36,6 +37,7 @@
         height: 48px;
         width: auto;
         object-fit: contain;
+        mix-blend-mode: multiply;
     }
 
     /* ===== MENU DESKTOP ===== */
