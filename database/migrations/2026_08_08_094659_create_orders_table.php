@@ -12,17 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-    $table->id();
-    $table->string('invoice_number')->unique();
-    $table->string('customer_name');
-    $table->string('customer_phone');
-    $table->text('shipping_address');
-    $table->decimal('total_amount', 12, 2);
-    $table->enum('status', ['pending', 'paid', 'packed', 'shipping', 'completed', 'cancelled'])->default('pending');
-    $table->string('tracking_number')->nullable(); // <-- Tambahkan baris ini untuk nomor resi
-    $table->string('marketplace_source')->default('website'); // website, shopee, tokopedia
-    $table->timestamps();
-});
+            $table->id();
+            $table->foreignId('product_id')->nullable()->constrained('products')->nullOnDelete();
+            $table->string('invoice_number')->unique();
+            $table->string('customer_name');
+            $table->string('customer_phone');
+            $table->text('shipping_address');
+            $table->integer('quantity')->default(1);
+            $table->decimal('total_amount', 12, 2);
+            $table->string('status')->default('menunggu pembayaran');
+            $table->string('tracking_number')->nullable();
+            $table->string('marketplace_source')->default('website');
+            $table->timestamps();
+        });
     }
 
     /**

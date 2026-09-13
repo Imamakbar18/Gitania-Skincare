@@ -48,6 +48,7 @@ class ApiAndUploadTest extends TestCase
             'name' => 'Cream Glowing',
             'sku' => 'GLOW-01',
             'price' => 120000,
+            'stock' => 20,
             'weight' => 50,
             'status' => 'active',
             'image' => $file,

@@ -22,6 +22,7 @@ class ProductTest extends TestCase
             'name' => 'Hydrating Serum Test',
             'sku' => 'SERUM-001',
             'price' => 150000,
+            'stock' => 10,
             'weight' => 100,
             'status' => 'active',
             'description' => 'Serum test description',
