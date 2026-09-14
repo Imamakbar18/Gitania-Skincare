@@ -959,11 +959,11 @@
         <!-- 1. Teks Minimalis Elegan (Sesuai Referensi Lactacyd) -->
         <div class="lactacyd-hero-textbox">
             <h1 class="lactacyd-hero-title">
-                A product for<br>
-                every skin
+                Untuk Setiap Kulit,<br>
+                <span>Untuk Setiap Cerita</span>
             </h1>
             <p class="lactacyd-hero-subtitle" id="heroSubtitleText">
-                Apa pun jenis kulitmu, selalu ada produk Gitania Skincare yang membantu menjaga dan menampilkan versi terbaik kulitmu dari dalam.
+                Gitania hadir untuk menemani rutinitas skincare-mu menuju kulit yang lebih sehat dan terawat.
             </p>
         </div>
 
