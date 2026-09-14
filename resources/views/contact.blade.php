@@ -252,7 +252,7 @@
         box-shadow: 0 24px 55px rgba(107, 33, 168, 0.16);
     }
     .location-map-top-banner {
-        height: 240px;
+        height: 480px;
         background: linear-gradient(145deg, #F5ECFD 0%, #E8DCFE 100%);
         display: flex;
         flex-direction: column;
@@ -265,6 +265,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center center;
     }
     .location-map-badge {
         position: absolute;
@@ -345,6 +346,7 @@
         .location-grid { grid-template-columns: 1fr; gap: 40px; }
     }
     @media (max-width: 768px) {
+        .location-map-top-banner { height: 380px; }
         .contact-hero-wrap { padding: 60px 18px 90px 18px; }
         .contact-hero-title { font-size: 34px; }
         .contact-cards-grid { grid-template-columns: 1fr; }
