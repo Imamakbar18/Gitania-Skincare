@@ -3,8 +3,11 @@
     <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px;">
         <div style="flex: 2; min-width: 280px;">
             <h3 style="color: #2d2638; font-size: 18px; font-weight: 700; margin-bottom: 15px;">✨ Gitania Skincare</h3>
-            <p style="color: #665c75; font-size: 13px; line-height: 1.6; max-width: 350px;">
-                Gitania Skincare adalah sebuah brand kecantikan yang merupakan salah satu lini di bawah naungan PT. Kosmetika Cantik Indonesia. Berdiri pada tahun 2023, Gitania Skincare memberikan perawatan terbaik untuk kulit wanita Indonesia.
+            <p style="color: #665c75; font-size: 13px; line-height: 1.7; max-width: 380px; margin-bottom: 10px;">
+                Gitania Skincare adalah brand kecantikan yang mengutamakan kesehatan dan keamanan kulit, hadir untuk memenuhi kebutuhan perawatan wajah dan tubuh, seluruh wanita Indonesia dan mengedepankan keamanan bagi ibu hamil dan ibu menyusui.
+            </p>
+            <p style="color: #665c75; font-size: 13px; line-height: 1.7; max-width: 380px;">
+                Hadir di bawah naungan <strong>PT Rumah Hanania Sejahtera</strong>, Gitania berkomitmen menghadirkan perawatan kulit yang aman, berkualitas, dan terpercaya.
             </p>
         </div>
         <div style="flex: 1; min-width: 140px;">
