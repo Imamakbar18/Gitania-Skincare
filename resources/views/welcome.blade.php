@@ -1224,7 +1224,7 @@
                             {{ $case->case_title }}
                         </div>
                         <div class="ba-photo-wrapper">
-                            <img src="{{ $imgSrc }}" alt="{{ $case->case_title }}" class="ba-photo-img" loading="lazy" onerror="this.onerror=null; this.src='{{ asset('images/before-after-' . (($loop->index % 3) + 1) . '.jpg') }}'">
+                            <img src="{{ $imgSrc }}" alt="{{ $case->case_title }}" class="ba-photo-img" loading="lazy" onerror="this.onerror=null; this.src='{{ asset('images/testi-ba-' . (($loop->index % 6) + 1) . '.jpg') }}'">
                             <div class="ba-censor-left"></div>
                             <div class="ba-censor-right"></div>
                             <div class="ba-pill-before">Before</div>
