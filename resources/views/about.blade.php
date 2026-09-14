@@ -528,7 +528,7 @@
                 <div class="about-visual-tag-badge">
                     <span>👩‍⚕️</span> Founder &amp; Midwife
                 </div>
-                <img src="{{ asset('images/bidan-gita-founder.jpg') }}?v={{ time() }}" alt="Bidan Gita Marisa, S.Tr.Keb.Bdn. - Founder Gitania Skincare" loading="lazy" style="object-position: center top; width: 100%; height: 100%; object-fit: cover;">
+                <img src="{{ asset('images/founder-lurus.jpg') }}?v={{ time() }}" alt="Bidan Gita Marisa, S.Tr.Keb.Bdn. - Founder Gitania Skincare" loading="lazy" style="object-position: center top; width: 100%; height: 100%; object-fit: cover;">
             </div>
 
         </div>
