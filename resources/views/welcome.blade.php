@@ -540,9 +540,13 @@
         padding: 0 24px;
     }
     .ba-header {
-        text-align: center;
-        max-width: 800px;
-        margin: 0 auto 44px auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        max-width: 1320px;
+        margin: 0 auto 36px auto;
+        gap: 20px;
+        flex-wrap: wrap;
     }
     .ba-sub-kicker {
         display: block;
@@ -563,13 +567,48 @@
         line-height: 1.4;
         text-transform: uppercase;
     }
-    .ba-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 26px;
-        align-items: stretch;
+    .ba-nav-btns {
+        display: flex;
+        gap: 12px;
+    }
+    .ba-nav-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: white;
+        border: 1.5px solid #DDD6FE;
+        color: #6B21A8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        box-shadow: 0 4px 12px rgba(107, 33, 168, 0.08);
+    }
+    .ba-nav-btn:hover {
+        background: #6B21A8;
+        color: white;
+        border-color: #6B21A8;
+        transform: scale(1.06);
+    }
+    .ba-slider-track {
+        display: flex;
+        gap: 24px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 10px 4px 25px 4px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        scroll-behavior: smooth;
+    }
+    .ba-slider-track::-webkit-scrollbar {
+        display: none;
     }
     .ba-card {
+        flex: 0 0 380px;
+        max-width: 380px;
+        scroll-snap-align: start;
         background: #ffffff;
         border-radius: 22px;
         border: 1.5px solid rgba(216, 196, 248, 0.7);
@@ -894,13 +933,13 @@
     }
 
     @media (max-width: 992px) {
-        .ba-grid { grid-template-columns: repeat(2, 1fr); }
+        .ba-card { flex: 0 0 340px; max-width: 340px; }
         .ba-title { font-size: 22px; }
         .reviews-title { font-size: 20px; }
         .review-card { flex: 0 0 320px; }
     }
     @media (max-width: 640px) {
-        .ba-grid { grid-template-columns: 1fr; }
+        .ba-card { flex: 0 0 85vw; max-width: 85vw; }
         .ba-title { font-size: 18px; }
         .reviews-title { font-size: 17px; }
         .review-card { flex: 0 0 85vw; }
@@ -1148,11 +1187,21 @@
 <div class="before-after-wrapper-full" id="hasil-nyata">
     <div class="before-after-section">
         <div class="ba-header">
-            <span class="ba-sub-kicker">HASIL NYATA</span>
-            <h2 class="ba-title">MEREKA TELAH MENCOBA DAN MEMBUKTIKAN HASILNYA</h2>
+            <div>
+                <span class="ba-sub-kicker">HASIL NYATA</span>
+                <h2 class="ba-title">MEREKA TELAH MENCOBA DAN MEMBUKTIKAN HASILNYA</h2>
+            </div>
+            <div class="ba-nav-btns">
+                <button class="ba-nav-btn" onclick="slideHasilNyata('left')" aria-label="Hasil Nyata Sebelumnya">
+                    ←
+                </button>
+                <button class="ba-nav-btn" onclick="slideHasilNyata('right')" aria-label="Hasil Nyata Selanjutnya">
+                    →
+                </button>
+            </div>
         </div>
 
-        <div class="ba-grid">
+        <div class="ba-slider-track" id="hasilNyataSliderTrack">
             @php
                 $casesToDisplay = (isset($beforeAfterCases) && $beforeAfterCases->count() > 0)
                     ? $beforeAfterCases
@@ -1193,7 +1242,7 @@
                     </div>
                 </div>
             @empty
-                <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--text-muted);">
+                <div style="padding: 40px; color: var(--text-muted);">
                     Belum ada data Hasil Nyata yang ditampilkan.
                 </div>
             @endforelse
@@ -1279,6 +1328,19 @@
 </div>
 
 <script>
+// ===== HASIL NYATA (BEFORE - AFTER) SLIDER NAVIGATION =====
+function slideHasilNyata(direction) {
+    const track = document.getElementById('hasilNyataSliderTrack');
+    if (!track) return;
+    const card = track.querySelector('.ba-card');
+    const scrollAmount = (card ? card.offsetWidth + 24 : 380);
+    if (direction === 'left') {
+        track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    } else {
+        track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+}
+
 // ===== REVIEWS SLIDER NAVIGATION =====
 function slideReviews(direction) {
     const track = document.getElementById('reviewsSliderTrack');
