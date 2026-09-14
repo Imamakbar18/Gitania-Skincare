@@ -378,14 +378,14 @@
     <div class="about-hero-ambient"></div>
     <div class="about-hero-content">
         <span class="about-pill-tag">
-            ✨ Clinical Care • Pure Beauty
+            ✨ Healthy Skin • Safe Care • Natural Glow
         </span>
         <h1 class="about-hero-title">
-            Merawat Kulit,<br>
-            <span>Memberdayakan Pesona Alami</span>
+            Gitania Skincare<br>
+            <span>Healthy Skin. Safe Care. Natural Glow.</span>
         </h1>
         <p class="about-hero-desc">
-            Gitania Skincare lahir untuk menghadirkan perawatan kulit berstandar klinis berkualitas tinggi yang aman, efektif, dan menutrisi setiap lapisan kulit wanita Indonesia.
+            Perawatan kulit yang mengutamakan kesehatan, keamanan, dan kecantikan alami kulit Anda. Hadir sebagai bagian dari perjalanan Anda dalam menjaga kesehatan kulit, Gitania Skincare mengutamakan perawatan kulit yang aman, tepat, dan berkualitas, sehingga Anda dapat merawat kulit dengan lebih percaya diri.
         </p>
 
         <!-- Certifications Row Badges -->
