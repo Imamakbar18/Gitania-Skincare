@@ -32,13 +32,24 @@ Route::get('/contact', [ShopController::class, 'contact'])->name('contact');
 // --- Rute AI Chat Gemini ---
 Route::post('/ai-chat', [ChatController::class, 'chat'])->name('ai.chat');
 
-// --- Helper Route untuk Bersihkan Cache di Hosting Shared/InfinityFree ---
+// --- Helper Route untuk Bersihkan Cache & Sync Storage di Hosting Shared/InfinityFree ---
 Route::get('/clear-cache', function () {
     \Illuminate\Support\Facades\Artisan::call('view:clear');
     \Illuminate\Support\Facades\Artisan::call('cache:clear');
     \Illuminate\Support\Facades\Artisan::call('config:clear');
     \Illuminate\Support\Facades\Artisan::call('route:clear');
-    return response('<h1>✓ Cache Berhasil Dibersihkan!</h1><p>Semua cache Blade, Config, dan Route telah dikosongkan. Silakan buka kembali <a href="/about">Halaman Tentang Kami</a> atau <a href="/">Halaman Utama</a>.</p>');
+
+    // Sinkronkan folder storage jika symlink tidak aktif di InfinityFree
+    $source = storage_path('app/public');
+    $dest = public_path('storage');
+    if (file_exists($source) && !is_link($dest)) {
+        if (!file_exists($dest)) {
+            @mkdir($dest, 0777, true);
+        }
+        \Illuminate\Support\Facades\File::copyDirectory($source, $dest);
+    }
+
+    return response('<h1>✓ Cache & Storage Berhasil Disinkronkan!</h1><p>Semua cache Blade, Config, dan Route telah dikosongkan. Folder storage gambar telah diperbarui. Silakan kembali ke <a href="/">Halaman Utama</a>.</p>');
 });
 
 // --- Keranjang Belanja & Checkout (AJAX & Web) ---
