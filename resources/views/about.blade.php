@@ -216,6 +216,30 @@
         border: 1px solid #DDD6FE;
     }
 
+    .btn-story-more {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #F3E8FF;
+        color: #6B21A8;
+        border: 1.5px solid #DDD6FE;
+        padding: 9px 22px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        margin: 12px 0 16px 0;
+        transition: all 0.25s ease;
+        box-shadow: 0 4px 12px rgba(107, 33, 168, 0.06);
+    }
+    .btn-story-more:hover {
+        background: #6B21A8;
+        color: #ffffff;
+        border-color: #6B21A8;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(107, 33, 168, 0.18);
+    }
+
     /* ===== PEMBATAS 2: UNIQUE ASYMMETRIC ORGANIC WAVE (SECTION 1 KE SECTION 2) ===== */
     .divider-organic-wrap {
         position: relative;
@@ -438,7 +462,7 @@
                 </p>
 
                 <!-- Box Dialog / Pertanyaan Pasien -->
-                <div style="background: #FBF9FF; border-left: 3px solid #7C3AED; padding: 12px 18px; border-radius: 0 12px 12px 0; margin: 12px 0 18px 0; display: flex; flex-direction: column; gap: 6px;">
+                <div style="background: #FBF9FF; border-left: 3px solid #7C3AED; padding: 12px 18px; border-radius: 0 12px 12px 0; margin: 12px 0 16px 0; display: flex; flex-direction: column; gap: 6px;">
                     <span style="font-style: italic; font-size: 13.5px; color: #5B21B6; font-weight: 500;">
                         💬 “Bidan, apakah skincare ini aman untuk ibu hamil?”
                     </span>
@@ -450,13 +474,69 @@
                 <p class="story-p">
                     Pertanyaan sederhana tersebut menjadi awal dari sebuah pemikiran besar. Bidan Gita melihat bahwa banyak perempuan tetap ingin merawat kulitnya selama masa kehamilan dan menyusui, namun di sisi lain mereka membutuhkan produk yang dapat digunakan dengan lebih tenang dan sesuai dengan kebutuhan di masa tersebut.
                 </p>
-                <p class="story-p">
-                    Dari sanalah lahir keinginan untuk menghadirkan <strong>Gitania Skincare</strong> — sebuah rangkaian perawatan kulit yang diformulasikan dengan perhatian terhadap keamanan dan kebutuhan kulit seluruh wanita Indonesia khususnya bagi ibu hamil dan ibu menyusui.
-                </p>
 
-                <a href="{{ route('shop.index') }}" class="btn-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 13px 30px; border-radius: 999px; font-size: 13px; font-weight: 700; text-decoration: none; box-shadow: 0 6px 20px rgba(107,33,168,0.28); margin-top: 8px;">
-                    Jelajahi Produk Kami →
-                </a>
+                <!-- Konten Tambahan yang Terbuka saat 'Baca Selengkapnya' diklik -->
+                <div id="storyExpandContainer" style="display: none; animation: fadeInStory 0.4s ease forwards;">
+                    <p class="story-p">
+                        Dari sanalah lahir keinginan untuk menghadirkan <strong>Gitania Skincare</strong> — sebuah rangkaian perawatan kulit yang diformulasikan dengan perhatian terhadap keamanan dan kebutuhan kulit seluruh wanita Indonesia khususnya bagi ibu hamil dan ibu menyusui.
+                    </p>
+                    <p class="story-p">
+                        Gitania tidak hanya hadir untuk membuat kulit terlihat lebih cantik, tetapi berangkat dari sebuah prinsip bahwa perawatan kulit seharusnya menjadi bagian dari menjaga kesehatan dan kepercayaan diri.
+                    </p>
+                    <p class="story-p">
+                        Seiring berkembangnya Gitania, kami terus berkomitmen menghadirkan produk perawatan kulit yang berkualitas, dengan formulasi yang dipilih secara cermat dan mengutamakan kenyamanan dalam penggunaan.
+                    </p>
+                    <p class="story-p" style="font-weight: 600; color: #581C87;">
+                        Dari kepedulian seorang bidan, lahirlah Gitania.<br>
+                        Untuk menemani setiap perempuan merawat dirinya dengan lebih aman dan percaya diri. 💜
+                    </p>
+
+                    <div style="margin: 18px 0 16px 0;">
+                        <h4 style="font-size: 14px; font-weight: 700; color: #1e293b; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.8px;">
+                            🌸 Nilai yang Kami Pegang:
+                        </h4>
+                        <div class="story-features-list" style="margin: 0 0 16px 0;">
+                            <div class="story-feature-item">
+                                <div class="story-feature-bullet">✓</div>
+                                <span style="font-size: 13.5px; font-weight: 600;">Berawal dari kebutuhan nyata pasien</span>
+                            </div>
+                            <div class="story-feature-item">
+                                <div class="story-feature-bullet">✓</div>
+                                <span style="font-size: 13.5px; font-weight: 600;">Mengutamakan keamanan dan kesehatan kulit</span>
+                            </div>
+                            <div class="story-feature-item">
+                                <div class="story-feature-bullet">✓</div>
+                                <span style="font-size: 13.5px; font-weight: 600;">Diformulasikan dengan perhatian terhadap kebutuhan ibu hamil &amp; menyusui</span>
+                            </div>
+                            <div class="story-feature-item">
+                                <div class="story-feature-bullet">✓</div>
+                                <span style="font-size: 13.5px; font-weight: 600;">Perawatan kulit yang nyaman untuk digunakan sehari-hari</span>
+                            </div>
+                            <div class="story-feature-item">
+                                <div class="story-feature-bullet">✓</div>
+                                <span style="font-size: 13.5px; font-weight: 600;">Terus berkembang melalui inovasi dan edukasi</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(245, 236, 253, 0.95); border-left: 4px solid var(--primary); padding: 14px 18px; border-radius: 0 14px 14px 0; margin-bottom: 18px; box-shadow: 0 4px 14px rgba(107,33,168,0.06);">
+                        <p style="font-size: 13.5px; color: #5B21B6; font-weight: 600; margin: 0; line-height: 1.6;">
+                            <strong>Gitania Skincare — Dari kepedulian, untuk kesehatan kulit.</strong><br>
+                            <em>Karena kami percaya, menjadi seorang ibu bukan berarti harus berhenti merawat diri. ✨</em>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tombol Aksi: Baca Selengkapnya & Jelajahi Produk -->
+                <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 10px;">
+                    <button type="button" id="btnToggleStory" onclick="toggleStoryText()" class="btn-story-more">
+                        <span id="storyBtnText">Baca Selengkapnya</span>
+                        <span id="storyBtnIcon">↓</span>
+                    </button>
+                    <a href="{{ route('shop.index') }}" class="btn-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; border-radius: 999px; font-size: 13px; font-weight: 700; text-decoration: none; box-shadow: 0 6px 20px rgba(107,33,168,0.22);">
+                        Jelajahi Produk Kami →
+                    </a>
+                </div>
             </div>
 
         </div>
@@ -699,5 +779,31 @@
         <path d="M0,0 C420,80 980,80 1440,0 L1440,85 L0,85 Z" class="shape-white-fill"></path>
     </svg>
 </div>
+
+<style>
+@keyframes fadeInStory {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<script>
+function toggleStoryText() {
+    const content = document.getElementById('storyExpandContainer');
+    const btnText = document.getElementById('storyBtnText');
+    const btnIcon = document.getElementById('storyBtnIcon');
+    if (!content) return;
+    
+    if (content.style.display === 'none' || !content.style.display) {
+        content.style.display = 'block';
+        if (btnText) btnText.innerText = 'Tutup Sebagian';
+        if (btnIcon) btnIcon.innerText = '↑';
+    } else {
+        content.style.display = 'none';
+        if (btnText) btnText.innerText = 'Baca Selengkapnya';
+        if (btnIcon) btnIcon.innerText = '↓';
+    }
+}
+</script>
 
 @endsection
