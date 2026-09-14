@@ -383,7 +383,7 @@
                 </nav>
                 <div style="margin-top: 16px;">
                     <div class="footer-heading" style="margin-bottom: 6px;">Email CS</div>
-                    <a href="mailto:cs@gitania.id" class="footer-nav-link" style="color: var(--primary); font-weight: 600;">cs@gitania.id</a>
+                    <a href="mailto:gitaniaskincare@gmail.com" class="footer-nav-link" style="color: var(--primary); font-weight: 600;">gitaniaskincare@gmail.com</a>
                 </div>
             </div>
 
