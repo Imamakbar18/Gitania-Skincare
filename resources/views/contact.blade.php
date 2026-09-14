@@ -462,7 +462,7 @@
                     <div class="location-map-badge">
                         <span>🏥</span> Klinik Pratama Rumah Hanania
                     </div>
-                    <img src="{{ asset('images/klinik-gitania.jpg') }}" alt="Klinik Pratama Rumah Hanania &amp; Gitania Office" loading="lazy">
+                    <img src="{{ asset('images/klinik-gitania.jpg') }}?v={{ filemtime(public_path('images/klinik-gitania.jpg')) }}" alt="Klinik Pratama Rumah Hanania &amp; Gitania Office" loading="lazy" style="object-position: center 35%;">
                 </div>
                 <div class="location-map-bottom-bar">
                     <div>
