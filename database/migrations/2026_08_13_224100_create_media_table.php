@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('media', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('instagram_link')->nullable();
-            $table->string('thumbnail')->nullable();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('media')) {
+            Schema::create('media', function (Blueprint $table) {
+                $table->id();
+                $table->string('title');
+                $table->string('instagram_link')->nullable();
+                $table->string('thumbnail')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
