@@ -524,11 +524,11 @@
             </div>
 
             <!-- Kolom Visual Foto 2 (Bidan Gita Marisa) -->
-            <div class="about-visual-frame" style="aspect-ratio: 16 / 11; background: #fbf9fe;">
+            <div class="about-visual-frame" style="aspect-ratio: 3 / 4; min-height: 520px; box-shadow: 0 20px 48px rgba(107, 33, 168, 0.12);">
                 <div class="about-visual-tag-badge">
                     <span>👩‍⚕️</span> Founder &amp; Midwife
                 </div>
-                <img src="{{ asset('images/founder-gita.jpg') }}?v={{ filemtime(public_path('images/founder-gita.jpg')) }}" alt="Bidan Gita Marisa, S.Tr.Keb.Bdn. - Founder Gitania Skincare" loading="lazy" style="object-position: center center; width: 100%; height: 100%; object-fit: cover;">
+                <img src="{{ asset('images/founder-gita.jpg') }}?v={{ filemtime(public_path('images/founder-gita.jpg')) }}" alt="Bidan Gita Marisa, S.Tr.Keb.Bdn. - Founder Gitania Skincare" loading="lazy" style="object-position: center top; width: 100%; height: 100%; object-fit: cover;">
             </div>
 
         </div>
