@@ -346,9 +346,13 @@
             <!-- Kolom 1: Logo & Deskripsi -->
             <div>
                 <img src="{{ asset('images/logo-gitania.jpg') }}" alt="Gitania Skincare" style="height: 72px; width: auto; object-fit: contain; margin-bottom: 14px; border-radius: 8px;">
-                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.7; margin: 0 0 16px 0; max-width: 260px;">
-                    Clinical-grade skincare untuk kulit sehat, cerah, dan bercahaya setiap hari.
-                </p>
+                <div style="margin-bottom: 16px; max-width: 290px;">
+                    <div style="font-weight: 700; font-size: 14px; color: var(--primary); margin-bottom: 4px;">Gitania Skincare</div>
+                    <div style="font-size: 12px; font-weight: 600; color: #7C3AED; letter-spacing: 0.5px; margin-bottom: 8px;">Healthy Skin. Safe Care. Natural Glow.</div>
+                    <p style="color: var(--text-muted); font-size: 13px; line-height: 1.65; margin: 0;">
+                        Perawatan kulit yang mengutamakan kesehatan, keamanan, dan kecantikan alami kulit Anda.
+                    </p>
+                </div>
                 <div style="display: flex; gap: 10px;">
                     <a href="#" style="width: 34px; height: 34px; background: var(--primary-pale); border: 1px solid var(--primary-border); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 700; font-size: 14px; text-decoration: none;">f</a>
                     <a href="#" style="width: 34px; height: 34px; background: var(--primary-pale); border: 1px solid var(--primary-border); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 700; font-size: 14px; text-decoration: none;">ig</a>
