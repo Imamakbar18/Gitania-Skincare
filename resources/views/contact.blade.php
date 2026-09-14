@@ -500,7 +500,9 @@
                         <div class="contact-info-icon-box">📞</div>
                         <div>
                             <div class="contact-info-label">Nomor Telepon</div>
-                            <div class="contact-info-value" style="font-weight: 700; color: var(--primary);">(0341) 3022814</div>
+                            <div class="contact-info-value" style="font-weight: 700; color: var(--primary);">
+                                <a href="tel:+6285714178178" style="color: inherit; text-decoration: none;">+62 857-1417-8178</a>
+                            </div>
                         </div>
                     </div>
 
@@ -510,7 +512,7 @@
                         <div>
                             <div class="contact-info-label">Email Resmi</div>
                             <div class="contact-info-value">
-                                <a href="mailto:publicrelation@gitaniaskincare.com" style="color: var(--primary); font-weight: 600; text-decoration: none;">publicrelation@gitaniaskincare.com</a>
+                                <a href="mailto:gitaniaskincare@gmail.com" style="color: var(--primary); font-weight: 600; text-decoration: none;">gitaniaskincare@gmail.com</a>
                             </div>
                         </div>
                     </div>

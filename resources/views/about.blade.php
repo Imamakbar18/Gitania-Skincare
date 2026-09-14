@@ -568,39 +568,80 @@
         <div class="about-grid-row">
             
             <!-- Kolom Visual Clinic (Foto Asli Klinik Pratama Rumah Hanania) -->
-            <div class="about-visual-frame">
+            <div class="about-visual-frame" style="aspect-ratio: 4 / 5; min-height: 480px;">
                 <div class="about-visual-tag-badge">
                     <span>🏥</span> Klinik Pratama
                 </div>
-                <img src="{{ asset('images/klinik-gitania.jpg') }}?v={{ filemtime(public_path('images/klinik-gitania.jpg')) }}" alt="Klinik Pratama Rumah Hanania" loading="lazy" style="object-position: center;">
+                <img src="{{ asset('images/klinik-gitania.jpg') }}?v={{ filemtime(public_path('images/klinik-gitania.jpg')) }}" alt="Klinik Pratama Rumah Hanania" loading="lazy" style="object-position: center; width: 100%; height: 100%; object-fit: cover;">
             </div>
 
             <!-- Kolom Teks Clinic -->
             <div class="about-text-content">
-                <span class="story-tag-pill">Klinik Kami</span>
-                <h2 class="story-heading">
+                <span class="story-tag-pill">Klinik &amp; Layanan Kesehatan</span>
+                <h2 class="story-heading" style="margin-bottom: 8px;">
                     Klinik Pratama<br>
                     Rumah Hanania
                 </h2>
-                <p class="story-p">
-                    Klinik Pratama Rumah Hanania menghadirkan solusi perawatan estetika wajah dan tubuh profesional. Didukung oleh dokter ahli berpengalaman serta fasilitas medis modern yang higienis, nyaman, dan terpercaya.
-                </p>
-                <p class="story-p">
-                    Dari perawatan kulit intensif, peremajaan kulit, hingga konsultasi dermatologi personal — kami siap memberikan penanganan terbaik untuk kesehatan dan kecantikan kulit Anda.
+                <p style="font-size: 15px; font-weight: 700; color: #7C3AED; margin-bottom: 18px; line-height: 1.5;">
+                    Kesehatan Keluarga, Perawatan Kulit, dan Estetika dalam Satu Tempat.
                 </p>
 
-                <div class="story-features-list">
-                    <div class="story-feature-item">
-                        <div class="story-feature-bullet">✓</div>
-                        <span>Dokter &amp; Tenaga Medis Bersertifikat Resmi</span>
-                    </div>
-                    <div class="story-feature-item">
-                        <div class="story-feature-bullet">✓</div>
-                        <span>Fasilitas Estetika Modern, Nyaman &amp; Higienis</span>
-                    </div>
-                    <div class="story-feature-item">
-                        <div class="story-feature-bullet">✓</div>
-                        <span>Konsultasi Personal Sesuai Kebutuhan Kulit Anda</span>
+                <p class="story-p">
+                    Klinik Pratama Rumah Hanania hadir memberikan pelayanan kesehatan yang lengkap, aman, nyaman, dan terpercaya untuk Anda dan keluarga.
+                </p>
+                <p class="story-p">
+                    Didukung oleh dokter umum, dokter gigi, pelayanan kebidanan, serta layanan kesehatan ibu dan anak, kami siap memberikan pelayanan kesehatan secara menyeluruh, termasuk pelayanan 24 jam.
+                </p>
+                <p class="story-p">
+                    Kami juga menghadirkan dokter umum dengan kompetensi di bidang estetika yang siap membantu Anda berkonsultasi mengenai kesehatan dan perawatan kulit.
+                </p>
+
+                <div style="background: rgba(245, 236, 253, 0.85); border-left: 4px solid var(--primary); padding: 16px 20px; border-radius: 0 16px 16px 0; margin: 20px 0;">
+                    <p style="font-size: 14px; font-weight: 700; color: #1e1b4b; margin-bottom: 6px;">
+                        Gunakan Gitania Skincare dengan lebih tenang.
+                    </p>
+                    <p class="story-p" style="font-size: 13.5px; margin-bottom: 12px;">
+                        Jika muncul keluhan atau Anda memiliki pertanyaan mengenai kondisi kulit maupun penggunaan produk, Anda dapat berkonsultasi langsung dengan dokter estetika di Klinik Pratama Rumah Hanania untuk mendapatkan saran perawatan yang tepat sesuai kebutuhan kulit Anda.
+                    </p>
+                    <p style="font-size: 13.5px; font-style: italic; color: #6D28D9; font-weight: 600; margin: 0; line-height: 1.6;">
+                        &ldquo;Healthy skin starts with the right care.<br>
+                        Kulit sehat berawal dari perawatan yang tepat.&rdquo; 💜
+                    </p>
+                </div>
+
+                <div style="margin-top: 24px; margin-bottom: 28px;">
+                    <h4 style="font-size: 13.5px; font-weight: 700; color: #1e293b; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.8px;">
+                        ✨ Layanan Kami:
+                    </h4>
+                    <div class="story-features-list" style="margin: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                        <div class="story-feature-item">
+                            <div class="story-feature-bullet">✓</div>
+                            <span style="font-size: 13px; font-weight: 600;">Dokter Umum</span>
+                        </div>
+                        <div class="story-feature-item">
+                            <div class="story-feature-bullet">✓</div>
+                            <span style="font-size: 13px; font-weight: 600;">Dokter Gigi</span>
+                        </div>
+                        <div class="story-feature-item">
+                            <div class="story-feature-bullet">✓</div>
+                            <span style="font-size: 13px; font-weight: 600;">Kebidanan</span>
+                        </div>
+                        <div class="story-feature-item">
+                            <div class="story-feature-bullet">✓</div>
+                            <span style="font-size: 13px; font-weight: 600;">Kesehatan Ibu &amp; Anak</span>
+                        </div>
+                        <div class="story-feature-item">
+                            <div class="story-feature-bullet">✓</div>
+                            <span style="font-size: 13px; font-weight: 600;">Pelayanan 24 Jam</span>
+                        </div>
+                        <div class="story-feature-item">
+                            <div class="story-feature-bullet">✓</div>
+                            <span style="font-size: 13px; font-weight: 600;">Konsultasi Estetika</span>
+                        </div>
+                        <div class="story-feature-item" style="grid-column: span 2;">
+                            <div class="story-feature-bullet">✓</div>
+                            <span style="font-size: 13px; font-weight: 600;">Konsultasi &amp; Perawatan Kulit</span>
+                        </div>
                     </div>
                 </div>
 
