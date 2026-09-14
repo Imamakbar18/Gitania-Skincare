@@ -472,35 +472,63 @@
             <!-- Kolom Teks Brand Story -->
             <div class="about-text-content">
                 <span class="story-tag-pill">Brand Story</span>
-                <h2 class="story-heading">
-                    Lahir dari Cinta untuk<br>
-                    Kulit Indonesia
+                <h2 class="story-heading" style="margin-bottom: 8px;">
+                    Berawal dari Kepedulian,<br>
+                    Hadir untuk Kulit yang Lebih Aman
                 </h2>
-                <p class="story-p">
-                    Gitania adalah sebuah brand kecantikan di bawah naungan PT. Kosmetika Cantik Indonesia. Berdiri dari moto perawatan berkualitas klinis, kami berupaya menjangkau seluruh kalangan dari remaja hingga dewasa.
+                
+                <p class="story-p" style="margin-bottom: 14px;">
+                    Gitania Skincare dicetuskan oleh <strong>Bidan Gita Marisa, S.Tr.Keb.Bdn.</strong>, berawal dari pengalaman mendampingi para perempuan, khususnya ibu hamil dan ibu menyusui.
                 </p>
-                <p class="story-p">
-                    Setiap produk Gitania diformulasikan khusus untuk iklim tropis Indonesia, memadukan bahan-bahan premium yang telah melalui uji klinis ketat demi memastikan keamanan, kenyamanan, dan hasil glowing maksimal.
+                <p class="story-p" style="margin-bottom: 14px;">
+                    Berbagai pertanyaan tentang keamanan penggunaan skincare selama kehamilan dan menyusui menjadi awal munculnya sebuah gagasan: menghadirkan skincare yang dapat membantu perempuan tetap merawat kulit dengan lebih tenang dan percaya diri.
+                </p>
+                <p class="story-p" style="margin-bottom: 18px;">
+                    Dari kepedulian tersebut, Gitania Skincare hadir dengan formulasi yang diperuntukkan untuk seluruh wanita Indonesia dan bagi ibu hamil dan ibu menyusui, dengan mengutamakan perhatian pada kesehatan, keamanan, dan kebutuhan kulit.
                 </p>
 
-                <div class="story-features-list">
-                    <div class="story-feature-item">
-                        <div class="story-feature-bullet">✓</div>
-                        <span>Disesuaikan untuk kelembapan &amp; suhu tropis</span>
+                <div style="margin-bottom: 18px;">
+                    <h4 style="font-size: 14px; font-weight: 700; color: #1e293b; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.8px;">
+                        🌸 Komitmen Gitania:
+                    </h4>
+                    <div class="story-features-list" style="margin: 0 0 16px 0;">
+                        <div class="story-feature-item">
+                            <div class="story-feature-bullet">✓</div>
+                            <span style="font-size: 13.5px; font-weight: 600;">Diformulasikan aman untuk ibu hamil &amp; menyusui</span>
+                        </div>
+                        <div class="story-feature-item">
+                            <div class="story-feature-bullet">✓</div>
+                            <span style="font-size: 13.5px; font-weight: 600;">Bisa digunakan untuk wanita yang sedang tidak hamil atau menyusui / umum</span>
+                        </div>
+                        <div class="story-feature-item">
+                            <div class="story-feature-bullet">✓</div>
+                            <span style="font-size: 13.5px; font-weight: 600;">Mengutamakan kesehatan dan keamanan kulit</span>
+                        </div>
+                        <div class="story-feature-item">
+                            <div class="story-feature-bullet">✓</div>
+                            <span style="font-size: 13.5px; font-weight: 600;">Nyaman digunakan dalam perawatan sehari-hari</span>
+                        </div>
+                        <div class="story-feature-item">
+                            <div class="story-feature-bullet">✓</div>
+                            <span style="font-size: 13.5px; font-weight: 600;">Hadir dengan kepedulian terhadap kebutuhan perempuan</span>
+                        </div>
                     </div>
-                    <div class="story-feature-item">
-                        <div class="story-feature-bullet">✓</div>
-                        <span>Bebas bahan kimia berbahaya &amp; aman jangka panjang</span>
-                    </div>
+                </div>
+
+                <div style="background: rgba(245, 236, 253, 0.9); border-left: 4px solid var(--primary); padding: 14px 18px; border-radius: 0 14px 14px 0;">
+                    <p style="font-size: 13.5px; color: #5B21B6; font-weight: 600; margin: 0; line-height: 1.6;">
+                        <strong>Gitania Skincare</strong><br>
+                        Merawat kulit dengan kepedulian, agar setiap perempuan dapat merasa cantik, sehat, dan percaya diri. 💜
+                    </p>
                 </div>
             </div>
 
-            <!-- Kolom Visual Foto 2 (Sunscreen Serum Photo) -->
-            <div class="about-visual-frame">
+            <!-- Kolom Visual Foto 2 (Bidan Gita Marisa) -->
+            <div class="about-visual-frame" style="aspect-ratio: 4 / 5; min-height: 480px;">
                 <div class="about-visual-tag-badge">
-                    <span>☀️</span> Tropical Care
+                    <span>👩‍⚕️</span> Founder &amp; Midwife
                 </div>
-                <img src="{{ asset('images/gitania-hero-banner-2.jpg') }}" alt="Brand Story Gitania Skincare" loading="lazy">
+                <img src="{{ asset('images/founder-gita.jpg') }}?v={{ filemtime(public_path('images/founder-gita.jpg')) }}" alt="Bidan Gita Marisa, S.Tr.Keb.Bdn. - Founder Gitania Skincare" loading="lazy" style="object-position: center 20%; width: 100%; height: 100%; object-fit: cover;">
             </div>
 
         </div>
