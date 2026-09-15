@@ -212,7 +212,7 @@
         {{-- Logo --}}
         <div class="gtn-logo">
             <a href="{{ route('home') }}">
-                <img src="{{ asset('images/logo-gitania.jpg') }}" alt="Gitania Skincare">
+                <img src="{{ asset('images/logo-gitania.jpg') }}?v={{ time() }}" alt="Gitania Skincare">
             </a>
         </div>
 
