@@ -345,7 +345,7 @@
 
             <!-- Kolom 1: Logo & Deskripsi -->
             <div>
-                <img src="{{ asset('images/logo-gitania.jpg') }}?v={{ time() }}" alt="Gitania Skincare" style="height: 72px; width: auto; object-fit: contain; margin-bottom: 14px; border-radius: 8px;">
+                <img src="{{ asset('images/logo-gitania.png') }}?v={{ time() }}" alt="Gitania Skincare" onerror="this.onerror=null; this.src='{{ asset('images/logo-gitania.jpg') }}'" style="height: 64px; width: auto; object-fit: contain; margin-bottom: 14px;">
                 <div style="margin-bottom: 16px; max-width: 290px;">
                     <div style="font-weight: 700; font-size: 14px; color: var(--primary); margin-bottom: 4px;">Gitania Skincare</div>
                     <div style="font-size: 12px; font-weight: 600; color: #7C3AED; letter-spacing: 0.5px; margin-bottom: 8px;">Healthy Skin. Safe Care. Natural Glow.</div>

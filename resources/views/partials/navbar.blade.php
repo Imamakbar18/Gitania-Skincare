@@ -37,7 +37,6 @@
         height: 48px;
         width: auto;
         object-fit: contain;
-        mix-blend-mode: multiply;
     }
 
     /* ===== MENU DESKTOP ===== */
@@ -212,7 +211,7 @@
         {{-- Logo --}}
         <div class="gtn-logo">
             <a href="{{ route('home') }}">
-                <img src="{{ asset('images/logo-gitania.jpg') }}?v={{ time() }}" alt="Gitania Skincare">
+                <img src="{{ asset('images/logo-gitania.png') }}?v={{ time() }}" alt="Gitania Skincare" onerror="this.onerror=null; this.src='{{ asset('images/logo-gitania.jpg') }}'">
             </a>
         </div>
 
